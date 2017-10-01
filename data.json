@@ -1,0 +1,283 @@
+{
+  "personal": [{
+              "nombre": "Maia",
+              "apellidos":"Rojas Tinco",
+              "user" :"MRT-B01",
+              "password":"1234",
+              "sede":"Base N° 01",
+              "foto":"1",
+              "turno":"diurno",
+              "cargo":"Piloto",
+              "personId": "6399d59c-26b2-463c-991a-5708a9ec968f"
+            },{
+              "nombre": "Ana",
+              "apellidos":"Durant Marines",
+              "user" :"ADM-B01",
+              "password":"1234",
+              "sede":"Base N° 01",
+              "foto":"1",
+              "turno":"diurno",
+              "cargo":"Médico",
+               "personId": "cf01234f-d489-40f8-9fed-a71bfd90b9e3"
+            },{
+              "nombre": "Jose",
+              "apellidos":"Rosas Aguilar",
+              "user" :"JRA-B01",
+              "password":"1234",
+              "sede":"Base N° 01",
+              "foto":"2",
+              "turno":"diurno",
+              "cargo":"Enfermero"
+            },{
+              "nombre": "Franco",
+              "apellidos":"Veles Dasas",
+              "user" :"FVD-B02",
+              "password":"1234",
+              "sede":"Base N° 02",
+              "foto":"2",
+              "turno":"diurno",
+              "cargo":"Piloto"
+            },{
+              "nombre": "Alejandro",
+              "apellidos":"Condor Marina",
+              "user" :"ACM-B02",
+              "password":"1234",
+              "sede":"Base N° 02",
+              "foto":"2",
+              "turno":"diurno",
+              "cargo":"Médico"
+            },{
+              "nombre": "Gabriel",
+              "apellidos":"Peres Dibar",
+              "user" :"GPD-B02",
+              "password":"1234",
+              "sede":"Base N° 02",
+              "foto":"2",
+              "turno":"diurno",
+              "cargo":"Enfermero"
+            },{
+              "nombre": "Viviana",
+              "apellidos":"Lujan Dasas",
+              "user" :"VLD-B03",
+              "password":"1234",
+              "sede":"Base N° 03",
+              "foto":"1",
+              "turno":"diurno",
+              "cargo":"Piloto",
+              "personId": "f33efe2e-6ad4-410d-aec7-98ae7da615fe"
+            },{
+              "nombre": "Carlos",
+              "apellidos":"Huarcaya Vivan",
+              "user" :"CHV-B03",
+              "password":"1234",
+              "sede":"Base N° 03",
+              "foto":"2",
+              "turno":"diurno",
+              "cargo":"Médico"
+            },{
+              "nombre": "Camilo",
+              "apellidos":"Flores Tello",
+              "user" :"CFT-B03",
+              "password":"1234",
+              "sede":"Base N° 03",
+              "foto":"2",
+              "turno":"diurno",
+              "cargo":"Enfermero"
+            },{
+              "nombre": "Devniel",
+              "apellidos":"Ardiano Perez",
+              "user" :"DAP-B04",
+              "password":"1234",
+              "sede":"Base N° 04",
+              "foto":"2",
+              "turno":"diurno",
+              "cargo":"Piloto"
+            },{
+              "nombre": "Armando",
+              "apellidos":"Garcia Curi",
+              "user" :"AGC-B04",
+              "password":"1234",
+              "sede":"Base N° 04",
+              "foto":"2",
+              "turno":"diurno",
+              "cargo":"Médico"
+            },{
+              "nombre": "Martin",
+              "apellidos":"Polo Chompa",
+              "user" :"MPC-B04",
+              "password":"1234",
+              "sede":"Base N° 04",
+              "foto":"2",
+              "turno":"diurno",
+              "cargo":"Enfermero"
+            },{
+              "nombre": "Administrador",
+              "apellidos":"",
+              "user" :"ADM-001",
+              "password":"1234",
+              "sede":"Central Samu",
+              "foto":"6",
+              "turno":"",
+              "cargo":"Administrador"
+            }],
+  "locales":[{
+            "latitud": -12.0601787,
+            "longitud": -77.1328701,
+            "name": "Base N° 01",
+            "direccion": "Bolognesi 200, Bellavista 07016"
+    },{
+            "latitud": -12.0716872,
+            "longitud": -77.0785483,
+            "name": "Base N° 02",
+            "direccion": "PUCP, Av. Universitaria 1801, San Miguel Lima 32, Perú"
+    },{
+           "latitud": -12.0659612,
+           "longitud": -77.0989606,
+           "name": "Base N° 03",
+           "direccion": "Av Parque de las Leyendas 255, Cercado de Lima LIMA 32"
+    },{
+          "latitud":-12.0783624,
+          "longitud":-77.091266,
+          "name": "Base N° 04",
+          "direccion": "Av. La Marina 2299, San Miguel 15088"
+    },{
+          "latitud":-12.1096081,
+          "longitud":-77.0316326,
+          "name": "Base N° 05",
+          "direccion": "Belisario Suarez 1070, Miraflores 15046"
+    },{
+          "latitud":-12.0722189,
+          "longitud":-77.0445303 ,
+          "name": "Base N° 06",
+          "direccion": "Jirón Pablo Bermudez 386, Jesús María 15072"
+    },{
+          "latitud":-12.1133948,
+          "longitud": -77.0325054,
+          "name": "Base N° 07",
+          "direccion": "Av. Angamos Este 261, Miraflores 15046"
+    },{
+          "latitud": -12.0599566,
+          "longitud":-77.1134234,
+          "name": "Base N° 08",
+          "direccion": "Bellavista 07011"
+    },{
+          "latitud":-12.0941829,
+          "longitud": -77.0376123,
+          "name": "Base N° 09",
+          "direccion": "Av. Arequipa 2890, San Isidro 15073"
+    },{
+          "latitud":-12.0732277,
+          "longitud":-76.9963599,
+          "name": "Base N° 10",
+          "direccion": "Av Circunvalación 2161, San Luis 15022"
+    },{
+          "latitud": -12.0800042,
+          "longitud": -77.0419361,
+          "name": "Base N° 11",
+          "direccion": "Jirón Mariscal Miller 1502, Lince 15073"
+    },{
+          "latitud":-12.0725513,
+          "longitud":-77.0425852,
+          "name": "Base N° 12",
+          "direccion": "Jirón Pablo Bermudez 250, Jesús María 15072"
+    },{
+           "latitud":-12.0790927,
+           "longitud":-77.0448566,
+           "name": "Base N° 13",
+           "direccion": "Av Edgardo Rebagliati 490, Jesús María 15072"
+    },{
+          "latitud": -12.0370175,
+          "longitud":-77.0395045,
+          "name": "Base N° 14",
+          "direccion": "Av. Francisco Pizarro 589, Cercado de Lima 15094"
+    },{
+          "latitud":-11.9926853,
+          "longitud":-77.0657012,
+          "name": "Base N° 15",
+          "direccion": "Independencia 15311"
+    },{
+          "latitud":-12.1783831,
+          "longitud":-77.0090187,
+          "name": "Base N° 16",
+          "direccion": "Los Gorriones 365, Cercado de Lima 15054"
+    },{
+          "latitud":-12.0468465,
+          "longitud":-76.9525938,
+          "name": "Base N° 17",
+          "direccion": "San Isidro Labrador, Carr. Central, Santa Anita 15011"
+    },{
+          "latitud":-12.1507658,
+          "longitud":-76.9930605,
+          "name": "Base N° 18",
+          "direccion": "Av. Los Proceres, Cercado de Lima 15054"
+    },{
+          "latitud":-12.0901758,
+          "longitud":-77.0378534,
+          "name": "Central Samu",
+          "direccion": "Av Javier Prado Oeste 355, Cercado de Lima 15073"
+    },{
+          "latitud":-12.0859698,
+          "longitud":-77.0763119,
+          "name": "Base N° 20",
+          "direccion": "Av. Mariscal Antonio José de Sucre 780, Cercado de Lima 15086"
+    },{
+          "latitud":-12.0129623,
+          "longitud":-77.1013674,
+          "name": "Base N° 21",
+          "direccion": "Calle Misionero de San Martín, Callao 07036"
+    },{
+          "latitud":-11.9949931,
+          "longitud":-77.0630621,
+          "name": "Base N° 22",
+          "direccion": "Jr. Los Tumbos, Jirón Los Tumbos, Independencia 15333"
+    },{
+           "latitud":-11.9486026,
+           "longitud":-77.0672427 ,
+           "name": "Base N° 23",
+           "direccion": "Manuel Aranguri 699, Comas 15314"
+    },{
+          "latitud": -12.0583244,
+          "longitud":-76.9308595,
+          "name": "Base N° 24",
+          "direccion": "El Remo La Molina N.º 96, Cercado de Lima 15026"
+    },{
+          "latitud": -12.1690428,
+          "longitud":-76.9482874 ,
+          "name": "Base N° 25",
+          "direccion": "Av. Defensores de Lima, Allende 1500, Villa María del Triunfo 035"
+    },{
+          "latitud": -12.1941478,
+          "longitud":-76.9467865,
+          "name": "Base N° 26",
+          "direccion": "Lima, Villa María del Triunfo"
+    },{
+          "latitud":-12.2116249,
+          "longitud": -76.9413611,
+          "name": "Base N° 27",
+          "direccion": "Sector 2 Grupo 15 Mz H Lt 16, Jr Miroquezada, Villa EL Salvador"
+    },{
+          "latitud":-12.2126631,
+          "longitud":-76.9395486,
+          "name": "Base N° 28",
+          "direccion": "Villa EL Salvador"
+    },{
+          "latitud":-11.9683526,
+          "longitud": -77.0042193,
+          "name": "Base N° 29",
+          "direccion": "San Juan de Lurigancho 15419"
+    },{
+          "latitud":-12.0369419,
+          "longitud":-76.9478235 ,
+          "name": "Base N° 30",
+          "direccion": "Gran Mercado Mayorista de, Lima 15011"
+    }],
+    "turno":[{
+            "horario":"diurno",
+            "horaP1": "0600",
+            "horaP2":"0700"
+      },{
+            "horario":"nocturno",
+            "horaP1": "1800",
+            "horaP2":"1900"
+        }]
+}
