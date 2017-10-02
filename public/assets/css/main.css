@@ -50,3 +50,16 @@ body {
   margin-top: 40px; }
   .form-actions input {
     border-radius: 9px; }
+
+.fb_cont_post {
+  margin: auto;
+  padding: 22px 50px 26px;
+  width: 600px;
+  background-color: #ffffff; }
+  .fb_cont_post .body_cont_post .form-inputs {
+    padding: 5px;
+    border: 1px solid #e9ebee; }
+
+.btn_cont #postType {
+  width: 17%;
+  display: inline-block; }

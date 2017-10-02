@@ -5,7 +5,13 @@ const render = (root) => {
     const section = $('<div class="cont_"></div>');
 
     section.append(logo( _ => logo(root)));
-    section.append(login( _ => login(root)));
+
+    if(state.page == null){
+      section.append(muro( _ => muro(root)));
+    } else if (state.page == 1) {
+      section.append(login( _ => login(root)));
+    }
+
 
     root.append(section);
 }
@@ -15,7 +21,7 @@ const updated = function () {
 }
 
 const state = {
-  pagina: null
+  page: null
 }
 
 
