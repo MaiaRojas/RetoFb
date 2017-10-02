@@ -52,7 +52,7 @@
         e.preventDefault();
         validUser(input_user.val(),error_user);
 
-        if (authenticate(input_user.val(),input_pasw.val())) {
+        if (authenticate(input_user.val(),input_pasw.val(),error_user ,error_pasw) == true) {
             state.page = 1;
             updated();
             console.log("Ir a pagina 2");

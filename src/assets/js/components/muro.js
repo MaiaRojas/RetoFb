@@ -5,8 +5,8 @@
       const cont_divform = $(`<div class="fb_cont_post"></div>`);
       const cont_form = $('<div class="body_cont_post"></div>');
       const cont_publica =$('<div class="cont_public"></div>');
-      const cont_amig =$('<button type="button" name="button" value="amigos">Amigos</button>');
-      const cont_publi =$('<button type="button" name="button" value="publico">Público</button>');
+      const cont_amig =$('<button type="button" class="btn_anuncios" name="button" value="amigos">Amigos</button>');
+      const cont_publi =$('<button type="button" class="btn_anuncios" name="button" value="publico">Público</button>');
       cont_publica.append(cont_amig,cont_publi);
       cont_muro.append(cont_divform);
 
@@ -19,7 +19,7 @@
       cont_form.append(div_title,forminput);
 
       const var_user =$('<div class="form-group"></div>');
-      const text_post =$('<textarea id ="postText" name="name" rows="8" cols="80"></textarea>');
+      const text_post =$('<textarea id ="postText" name="name" rows="8"  placeholder="¿Que esta pasando?" cols="80"></textarea>');
       const div_btn = $('<div class="btn_cont"></div>');
       const selec_post =$('<select id="postType"></select>');
       const op_public =$('<option value="publico">Público</option>');
@@ -30,7 +30,7 @@
       var_user.append(text_post,div_btn);
       forminput.append(var_user);
 
-      const div_post =$(`<div id="posts"></div>`);
+      const div_post =$(`<div id="posts" class="fb_cont_post"></div>`);
       cont_muro.append(div_post);
 
       var postManager = new PostManager();

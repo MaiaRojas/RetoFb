@@ -7,8 +7,8 @@ const render = (root) => {
     section.append(logo( _ => logo(root)));
 
     if(state.page == null){
-      section.append(login(updated));
-
+      // section.append(login(updated));
+      section.append(muro(updated));
     } else if (state.page == 1) {
         section.append(muro(updated));
     }

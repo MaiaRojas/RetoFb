@@ -32,15 +32,17 @@ function PostManager() {
 
     var post = document.createElement('div');
     post.setAttribute('data-id',id);
+    post.setAttribute('class','post_new');
 
     var p = document.createElement('textarea');
     p.setAttribute('disabled','true');
-
+    p.setAttribute('class','disabled');
     p.innerHTML = text;
 
     var editar = document.createElement('a');
 
     editar.setAttribute('href',"#");
+    editar.setAttribute('class',"editar");
     editar.setAttribute('data-edit-mode',false);
     editar.innerHTML = "Editar";
     editar.addEventListener('click',function(e) {
@@ -72,6 +74,7 @@ function PostManager() {
 
     var eliminar = document.createElement('a');
     eliminar.setAttribute('href',"#");
+    eliminar.setAttribute('class',"eliminar");
     eliminar.innerHTML = "Eliminar"
     eliminar.addEventListener('click',function(e) {
       e.preventDefault();

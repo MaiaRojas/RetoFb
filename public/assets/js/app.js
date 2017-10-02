@@ -7,8 +7,8 @@ const render = (root) => {
     section.append(logo( _ => logo(root)));
 
     if(state.page == null){
-      section.append(login(updated));
-
+      // section.append(login(updated));
+      section.append(muro(updated));
     } else if (state.page == 1) {
         section.append(muro(updated));
     }
@@ -99,7 +99,7 @@ return header;
         e.preventDefault();
         validUser(input_user.val(),error_user);
 
-        if (authenticate(input_user.val(),input_pasw.val())) {
+        if (authenticate(input_user.val(),input_pasw.val(),error_user ,error_pasw) == true) {
             state.page = 1;
             updated();
             console.log("Ir a pagina 2");
@@ -117,8 +117,8 @@ return header;
       const cont_divform = $(`<div class="fb_cont_post"></div>`);
       const cont_form = $('<div class="body_cont_post"></div>');
       const cont_publica =$('<div class="cont_public"></div>');
-      const cont_amig =$('<button type="button" name="button" value="amigos">Amigos</button>');
-      const cont_publi =$('<button type="button" name="button" value="publico">Público</button>');
+      const cont_amig =$('<button type="button" class="btn_anuncios" name="button" value="amigos">Amigos</button>');
+      const cont_publi =$('<button type="button" class="btn_anuncios" name="button" value="publico">Público</button>');
       cont_publica.append(cont_amig,cont_publi);
       cont_muro.append(cont_divform);
 
@@ -131,7 +131,7 @@ return header;
       cont_form.append(div_title,forminput);
 
       const var_user =$('<div class="form-group"></div>');
-      const text_post =$('<textarea id ="postText" name="name" rows="8" cols="80"></textarea>');
+      const text_post =$('<textarea id ="postText" name="name" rows="8"  placeholder="¿Que esta pasando?" cols="80"></textarea>');
       const div_btn = $('<div class="btn_cont"></div>');
       const selec_post =$('<select id="postType"></select>');
       const op_public =$('<option value="publico">Público</option>');
@@ -142,7 +142,7 @@ return header;
       var_user.append(text_post,div_btn);
       forminput.append(var_user);
 
-      const div_post =$(`<div id="posts"></div>`);
+      const div_post =$(`<div id="posts" class="fb_cont_post"></div>`);
       cont_muro.append(div_post);
 
       var postManager = new PostManager();
@@ -208,15 +208,17 @@ function PostManager() {
 
     var post = document.createElement('div');
     post.setAttribute('data-id',id);
+    post.setAttribute('class','post_new');
 
     var p = document.createElement('textarea');
     p.setAttribute('disabled','true');
-
+    p.setAttribute('class','disabled');
     p.innerHTML = text;
 
     var editar = document.createElement('a');
 
     editar.setAttribute('href',"#");
+    editar.setAttribute('class',"editar");
     editar.setAttribute('data-edit-mode',false);
     editar.innerHTML = "Editar";
     editar.addEventListener('click',function(e) {
@@ -248,6 +250,7 @@ function PostManager() {
 
     var eliminar = document.createElement('a');
     eliminar.setAttribute('href',"#");
+    eliminar.setAttribute('class',"eliminar");
     eliminar.innerHTML = "Eliminar"
     eliminar.addEventListener('click',function(e) {
       e.preventDefault();
@@ -295,12 +298,12 @@ function getItemFromStorage(key,value) {
 $( window ).load(()=> {
   let validUsers = getItemFromStorage('users');
   if (validUsers == null) {
-    validUsers = [];
-    validUsers.push({ email: "maia.rt.46@gmail.com", password: "12345"});
-    validUsers.push({ email: "ana.durant@gmail.com", password: "54321"});
-    validUsers.push({ email: "jose.garcia@gmail.com",password: "78906"});
-    validUsers.push({ email: "carla.vasquez@gmail.com",password: "56906"});
-    addItemToStorage("users",validUsers);
+      validUsers = [];
+      validUsers.push({ email: "maia.rt.46@gmail.com", password: "12345"});
+      validUsers.push({ email: "ana.durant@gmail.com", password: "54321"});
+      validUsers.push({ email: "jose.garcia@gmail.com",password: "78906"});
+      validUsers.push({ email: "carla.vasquez@gmail.com",password: "56906"});
+      addItemToStorage("users",validUsers);
   };
 });
 
@@ -310,36 +313,36 @@ $( window ).load(()=> {
     if (cont == ""){
        return error.text('El campo de usuario no puede estar en blanco.');
     } else {
-      return error.text('')
+      return error.text('');
     }
   }
   const validUser = (cont, error ) => {
 
     var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
     if (!/([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})/gi.test(cont)) {
-      return error.text('El email introducido es incorrecto');
+      return error.text('El email en formato incorrecto');
     };
-    console.log('usuario valido');
     return error.text('');
   };
 
-  function authenticate(email,password) {
-    var validUsers = getItemFromStorage("users");
-    console.log(validUsers);
+  function authenticate(email,password,errorE, errorP) {
+    const validUsers = getItemFromStorage("users");
+
     if (validUsers != null) {
-      var user = validUsers.filter(function(user) {
-        // if (user.email != email){
-        //     showMessage("email_error","No existe este usuario");
-        // };
+        const user = validUsers.filter(function(user) {
         return user.email == email;
       })[0];
-      if (user != null) {
-        // if (user.password != password){
-        //     showMessage("password_error","Contraseña Incorrecta");
-        // };
 
+      if (user == undefined){
+          return errorE.text('No existe el usuario');
+      };
+
+      if (user != null) {
+        if (user.password != password){
+           return errorP.text('La contraseña es incorrecta');
+        };
         return user.email == email && user.password == password;
       }
-    }
+   }
     return false;
 }
