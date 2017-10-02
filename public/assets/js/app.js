@@ -116,9 +116,13 @@ return header;
 
       const cont_divform = $(`<div class="fb_cont_post"></div>`);
       const cont_form = $('<div class="body_cont_post"></div>');
-
+      const cont_publica =$('<div class="cont_public"></div>');
+      const cont_amig =$('<button type="button" name="button" value="amigos">Amigos</button>');
+      const cont_publi =$('<button type="button" name="button" value="publico">Público</button>');
+      cont_publica.append(cont_amig,cont_publi);
       cont_muro.append(cont_divform);
-      cont_divform.append(cont_form);
+
+      cont_divform.append(cont_form,cont_publica);
 
       const div_title =$(`<div class="title_login center"><div class="center cont_img"></div>
                             <span class="center">Relizar publicación</span></div>`);
@@ -147,18 +151,25 @@ return header;
       //Llamando al post
 
       btn_publicar.on('click', function(){
-
-        const postTextarea = document.getElementById('postText').value;
-        console.log(postTextarea);
-        const postTypeSelect = document.getElementById('postType');
-        console.log(postTypeSelect);
-        const postType = postTypeSelect.options[postTypeSelect.selectedIndex].value;
-        console.log(postType);
-        console.log();
-        postManager.addPost(postTextarea,postType);
-        postManager.postsToHTML(document.getElementById('posts'));
-
+        if(text_post.val()!=""){
+          const postTextarea = document.getElementById('postText').value;
+          const postTypeSelect = document.getElementById('postType');
+          const postType = postTypeSelect.options[postTypeSelect.selectedIndex].value;
+          postManager.addPost(postTextarea,postType);
+          postManager.postsToHTML(document.getElementById('posts'));
+        } else {
+          alert("No hay mensaje que publicar");
+        }
       });
+
+      cont_amig.on('click', function(){
+        postManager.filterType("amigos",document.getElementById('posts'));
+      });
+
+      cont_publi.on('click', function(){
+        postManager.filterType("publico",document.getElementById('posts'));
+      });
+
 
     return cont_muro;
   }
@@ -176,6 +187,15 @@ function PostManager() {
     this.postCount++;
   }
 
+  this.filterType = function(type,parent){
+    parent.innerHTML = "";
+    array.forEach(function(e , index){
+      if(e.type == type){
+        parent.appendChild(this.createHTMLPost(e.text,e.id));
+      }
+    },this);
+  }
+
   this.postsToHTML = function(parent) {
     parent.innerHTML = "";
     this.posts.forEach(function(post) {
@@ -183,8 +203,8 @@ function PostManager() {
     },this);
   }
   var array = this.posts;
-  console.log(array);
-  this.createHTMLPost = function(text,id ,parent) {
+
+  this.createHTMLPost = function(text,id) {
 
     var post = document.createElement('div');
     post.setAttribute('data-id',id);
@@ -231,18 +251,17 @@ function PostManager() {
     eliminar.innerHTML = "Eliminar"
     eliminar.addEventListener('click',function(e) {
       e.preventDefault();
+      if (confirm("Esta seguro que desea eliminar") == true){
+        var padre = document.getElementById("posts");
+        var postId = e.target.parentNode.getAttribute('data-id');
 
-      var padre = document.getElementById("posts");
-      var postId = e.target.parentNode.getAttribute('data-id');
-      console.log(postId);
-      console.log(array);
-
-      array.forEach(function(e , index){
-        if(e.id==postId){
-          padre.removeChild(padre.childNodes[index]);
-          array.splice(index ,1)
-        }
-      });
+        array.forEach(function(e , index){
+          if(e.id==postId){
+            padre.removeChild(padre.childNodes[index]);
+            array.splice(index ,1)
+          }
+        });
+      }
     });
 
     post.appendChild(p);

@@ -11,6 +11,15 @@ function PostManager() {
     this.postCount++;
   }
 
+  this.filterType = function(type,parent){
+    parent.innerHTML = "";
+    array.forEach(function(e , index){
+      if(e.type == type){
+        parent.appendChild(this.createHTMLPost(e.text,e.id));
+      }
+    },this);
+  }
+
   this.postsToHTML = function(parent) {
     parent.innerHTML = "";
     this.posts.forEach(function(post) {
@@ -18,8 +27,8 @@ function PostManager() {
     },this);
   }
   var array = this.posts;
-  console.log(array);
-  this.createHTMLPost = function(text,id ,parent) {
+
+  this.createHTMLPost = function(text,id) {
 
     var post = document.createElement('div');
     post.setAttribute('data-id',id);
@@ -66,18 +75,17 @@ function PostManager() {
     eliminar.innerHTML = "Eliminar"
     eliminar.addEventListener('click',function(e) {
       e.preventDefault();
+      if (confirm("Esta seguro que desea eliminar") == true){
+        var padre = document.getElementById("posts");
+        var postId = e.target.parentNode.getAttribute('data-id');
 
-      var padre = document.getElementById("posts");
-      var postId = e.target.parentNode.getAttribute('data-id');
-      console.log(postId);
-      console.log(array);
-
-      array.forEach(function(e , index){
-        if(e.id==postId){
-          padre.removeChild(padre.childNodes[index]);
-          array.splice(index ,1)
-        }
-      });
+        array.forEach(function(e , index){
+          if(e.id==postId){
+            padre.removeChild(padre.childNodes[index]);
+            array.splice(index ,1)
+          }
+        });
+      }
     });
 
     post.appendChild(p);
