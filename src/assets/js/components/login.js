@@ -1,5 +1,5 @@
 "use strict";
-  const login = (update) => {
+  const login = (updated) => {
       const cont_login =$('<section class="globalcontainer"></section>');
 
       const cont_divform=$(`<div class="fb_cont"></div>`);
@@ -48,10 +48,13 @@
         validarCont(input_pasw.val(),error_pasw);
       });
 
-      btn_enviar.on('click', function(){
+      btn_enviar.on('click', function(e){
+        e.preventDefault();
         validUser(input_user.val(),error_user);
 
         if (authenticate(input_user.val(),input_pasw.val())) {
+            state.page = 1;
+            updated();
             console.log("Ir a pagina 2");
         }
 

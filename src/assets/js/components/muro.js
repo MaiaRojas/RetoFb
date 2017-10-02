@@ -36,11 +36,11 @@
 
       btn_publicar.on('click', function(){
 
-        var postTextarea = document.getElementById('postText').value;
+        const postTextarea = document.getElementById('postText').value;
         console.log(postTextarea);
-        var postTypeSelect = document.getElementById('postType');
+        const postTypeSelect = document.getElementById('postType');
         console.log(postTypeSelect);
-        var postType = postTypeSelect.options[postTypeSelect.selectedIndex].value;
+        const postType = postTypeSelect.options[postTypeSelect.selectedIndex].value;
         console.log(postType);
         console.log();
         postManager.addPost(postTextarea,postType);

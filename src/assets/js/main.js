@@ -1,5 +1,5 @@
 "use strict";
-
+const root = $(".root");
 const render = (root) => {
     root.empty();
     const section = $('<div class="cont_"></div>');
@@ -7,16 +7,17 @@ const render = (root) => {
     section.append(logo( _ => logo(root)));
 
     if(state.page == null){
-      section.append(muro( _ => muro(root)));
+      section.append(login(updated));
+
     } else if (state.page == 1) {
-      section.append(login( _ => login(root)));
+        section.append(muro(updated));
     }
 
 
     root.append(section);
 }
 
-const updated = function () {
+const updated = function (){
     render(root);
 }
 

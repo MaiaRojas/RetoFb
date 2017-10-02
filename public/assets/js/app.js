@@ -1,5 +1,5 @@
 "use strict";
-
+const root = $(".root");
 const render = (root) => {
     root.empty();
     const section = $('<div class="cont_"></div>');
@@ -7,16 +7,17 @@ const render = (root) => {
     section.append(logo( _ => logo(root)));
 
     if(state.page == null){
-      section.append(muro( _ => muro(root)));
+      section.append(login(updated));
+
     } else if (state.page == 1) {
-      section.append(login( _ => login(root)));
+        section.append(muro(updated));
     }
 
 
     root.append(section);
 }
 
-const updated = function () {
+const updated = function (){
     render(root);
 }
 
@@ -45,7 +46,7 @@ return header;
 }
 
 "use strict";
-  const login = (update) => {
+  const login = (updated) => {
       const cont_login =$('<section class="globalcontainer"></section>');
 
       const cont_divform=$(`<div class="fb_cont"></div>`);
@@ -94,10 +95,13 @@ return header;
         validarCont(input_pasw.val(),error_pasw);
       });
 
-      btn_enviar.on('click', function(){
+      btn_enviar.on('click', function(e){
+        e.preventDefault();
         validUser(input_user.val(),error_user);
 
         if (authenticate(input_user.val(),input_pasw.val())) {
+            state.page = 1;
+            updated();
             console.log("Ir a pagina 2");
         }
 
@@ -144,11 +148,11 @@ return header;
 
       btn_publicar.on('click', function(){
 
-        var postTextarea = document.getElementById('postText').value;
+        const postTextarea = document.getElementById('postText').value;
         console.log(postTextarea);
-        var postTypeSelect = document.getElementById('postType');
+        const postTypeSelect = document.getElementById('postType');
         console.log(postTypeSelect);
-        var postType = postTypeSelect.options[postTypeSelect.selectedIndex].value;
+        const postType = postTypeSelect.options[postTypeSelect.selectedIndex].value;
         console.log(postType);
         console.log();
         postManager.addPost(postTextarea,postType);
@@ -178,45 +182,45 @@ function PostManager() {
       parent.appendChild(this.createHTMLPost(post.text,post.id));
     },this);
   }
-
+  var array = this.posts;
+  console.log(array);
   this.createHTMLPost = function(text,id ,parent) {
-    var array = this.posts;
+
     var post = document.createElement('div');
     post.setAttribute('data-id',id);
 
-    var p = document.createElement('p');
+    var p = document.createElement('textarea');
+    p.setAttribute('disabled','true');
+
     p.innerHTML = text;
 
     var editar = document.createElement('a');
+
     editar.setAttribute('href',"#");
     editar.setAttribute('data-edit-mode',false);
     editar.innerHTML = "Editar";
     editar.addEventListener('click',function(e) {
       e.preventDefault();
+
       if (e.target.getAttribute('data-edit-mode') === 'false') {
         editar.setAttribute('data-edit-mode',true);
         e.target.innerHTML = "Guardar";
+        p.removeAttribute("disabled");
 
-        var editText = e.target.parentNode.getElementsByTagName('p')[0].innerHTML;
-        var editTextarea = document.createElement('textarea');
-
-        editTextarea.value = editText;
-        e.target.parentNode.insertBefore(editTextarea,p);
-        e.target.parentNode.insertBefore(document.createElement('br'),e.target);
-        e.target.parentNode.removeChild(p);
       }
       else {
-        console.log(e.target.parentNode);
+
         editar.setAttribute('data-edit-mode',false);
         var textEditada = e.target.parentNode.getElementsByTagName('textarea')[0];
-        var brEditada = e.target.parentNode.getElementsByTagName('br')[0];
-        var Editado = e.target.parentNode.insertBefore(document.createElement('p'),e.target);
-        Editado.innerHTML = textEditada.value;
-        e.target.parentNode.removeChild(textEditada);
-        e.target.parentNode.removeChild(brEditada);
+
         e.target.innerHTML = "Editar";
-        var postId = e.target.parentNode.getAttribute('data-id');
-        array[postId][text] =textEditada.value;
+        var postId =parseInt(e.target.parentNode.getAttribute('data-id'));
+        array.forEach(function(e , index){
+          if(e.id==postId){
+          array[index].text = textEditada.value;
+            p.setAttribute('disabled','true');
+          }
+        });
       };
 
     });
@@ -230,8 +234,15 @@ function PostManager() {
 
       var padre = document.getElementById("posts");
       var postId = e.target.parentNode.getAttribute('data-id');
-      padre.removeChild(padre.childNodes[postId]);
-      array.splice(postId ,1);
+      console.log(postId);
+      console.log(array);
+
+      array.forEach(function(e , index){
+        if(e.id==postId){
+          padre.removeChild(padre.childNodes[index]);
+          array.splice(index ,1)
+        }
+      });
     });
 
     post.appendChild(p);
