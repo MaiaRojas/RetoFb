@@ -27,9 +27,11 @@ function PostManager() {
   }
 
   this.postsToHTML = function(parent) {
-    parent.innerHTML = "";
+    parent.html = "";
+    // parent.innerHTML = "";
     this.posts.forEach(function(post) {
-      parent.appendChild(this.createHTMLPost(post.text,post.id));
+      // parent.appendChild(this.createHTMLPost(post.text,post.id));
+      parent.append(this.createHTMLPost(post.text,post.id));
     },this);
   }
 
@@ -75,15 +77,15 @@ function PostManager() {
         e.target.innerHTML = "Editar";
         var postId =parseInt(e.target.parentNode.getAttribute('data-id'));
         array.forEach(function(e , index){
-          if(e.id==postId){
-          array[index].text = textEditada.value;
+          if(e.id == postId){
+            array[index].text = textEditada.value;
+            editLocalStorage(index ,textEditada.value);
             p.setAttribute('disabled','true');
           }
         });
       };
 
     });
-
 
     var eliminar = document.createElement('a');
     eliminar.setAttribute('href',"#");
@@ -99,6 +101,7 @@ function PostManager() {
           if(e.id==postId){
             padre.removeChild(padre.childNodes[index]);
             array.splice(index ,1)
+            removeLocalStorage(array,index);
           }
         });
       }

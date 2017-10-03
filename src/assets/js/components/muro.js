@@ -45,11 +45,14 @@
       btn_publicar.on('click', function(){
 
         if(text_post.val()!=""){
-          const postTextarea = document.getElementById('postText').value;
+          const postTextarea = $('#postText').val();
+          // const postTypeSelect = $('#postType');
+          // const postTextarea = document.getElementById('postText').value;
           const postTypeSelect = document.getElementById('postType');
           const postType = postTypeSelect.options[postTypeSelect.selectedIndex].value;
           postManager.addPost(postTextarea,postType);
-          postManager.postsToHTML(document.getElementById('posts'));
+          postManager.postsToHTML(div_post);
+          // postManager.postsToHTML(document.getElementById('posts'));
         } else {
           alert("No hay mensaje que publicar");
         }

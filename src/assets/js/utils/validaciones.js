@@ -18,7 +18,7 @@
 
 
 
-  function authenticate(email,password,errorE, errorP) {
+function authenticate(email,password,errorE, errorP) {
 
   const validUsers = getItemFromStorage("users");
     if (validUsers != null) {
@@ -41,12 +41,30 @@
     return false;
 }
 
+
+
+
 function addLocalStorage(id ,text,type){
   const validUsers = getItemFromStorage("users");
   const newPost = {id:id,text:text,type:type};
   const point = state.user.id;
 
-  console.log(point);
   (validUsers[point].post).push(newPost);
+  addItemToStorage("users",validUsers);
+}
+
+function removeLocalStorage(index){
+  const validUsers = getItemFromStorage("users");
+  const point = state.user.id;
+
+  (validUsers[point].post).splice(index,1);
+  addItemToStorage("users",validUsers);
+}
+
+function editLocalStorage(index ,editado){
+  const validUsers = getItemFromStorage("users");
+  const point = state.user.id;
+
+  (validUsers[point].post)[index].text =editado;
   addItemToStorage("users",validUsers);
 }

@@ -11,6 +11,5 @@ $( window ).load(()=> {
       validUsers.push({ email: "carla.vasquez@gmail.com",password: "56906" ,id:"4",post:[]});
       addItemToStorage("users",validUsers);
   };
-  console.log(validUsers);
 
 });

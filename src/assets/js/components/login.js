@@ -54,9 +54,7 @@
 
         if (authenticate(input_user.val(),input_pasw.val(),error_user ,error_pasw) == true) {
             state.page = 1;
-            
             updated();
-
         }
 
       });

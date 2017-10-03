@@ -12,7 +12,6 @@ const render = (root) => {
       section.append(muro(updated));
     }
 
-
     root.append(section);
 }
 
@@ -27,7 +26,6 @@ const state = {
 
 
 $(_ => {
-
     const root = $(".root");
     render(root);
 
@@ -101,9 +99,7 @@ return header;
 
         if (authenticate(input_user.val(),input_pasw.val(),error_user ,error_pasw) == true) {
             state.page = 1;
-            
             updated();
-
         }
 
       });
@@ -158,11 +154,14 @@ return header;
       btn_publicar.on('click', function(){
 
         if(text_post.val()!=""){
-          const postTextarea = document.getElementById('postText').value;
+          const postTextarea = $('#postText').val();
+          // const postTypeSelect = $('#postType');
+          // const postTextarea = document.getElementById('postText').value;
           const postTypeSelect = document.getElementById('postType');
           const postType = postTypeSelect.options[postTypeSelect.selectedIndex].value;
           postManager.addPost(postTextarea,postType);
-          postManager.postsToHTML(document.getElementById('posts'));
+          postManager.postsToHTML(div_post);
+          // postManager.postsToHTML(document.getElementById('posts'));
         } else {
           alert("No hay mensaje que publicar");
         }
@@ -209,9 +208,11 @@ function PostManager() {
   }
 
   this.postsToHTML = function(parent) {
-    parent.innerHTML = "";
+    parent.html = "";
+    // parent.innerHTML = "";
     this.posts.forEach(function(post) {
-      parent.appendChild(this.createHTMLPost(post.text,post.id));
+      // parent.appendChild(this.createHTMLPost(post.text,post.id));
+      parent.append(this.createHTMLPost(post.text,post.id));
     },this);
   }
 
@@ -257,15 +258,15 @@ function PostManager() {
         e.target.innerHTML = "Editar";
         var postId =parseInt(e.target.parentNode.getAttribute('data-id'));
         array.forEach(function(e , index){
-          if(e.id==postId){
-          array[index].text = textEditada.value;
+          if(e.id == postId){
+            array[index].text = textEditada.value;
+            editLocalStorage(index ,textEditada.value);
             p.setAttribute('disabled','true');
           }
         });
       };
 
     });
-
 
     var eliminar = document.createElement('a');
     eliminar.setAttribute('href',"#");
@@ -281,6 +282,7 @@ function PostManager() {
           if(e.id==postId){
             padre.removeChild(padre.childNodes[index]);
             array.splice(index ,1)
+            removeLocalStorage(array,index);
           }
         });
       }
@@ -296,11 +298,12 @@ function PostManager() {
 function addItemToStorage(key,value) {
 
   if (typeof(Storage) != "undefined") {
-    localStorage.setItem(key,JSON.stringify(value)); 
+    localStorage.setItem(key,JSON.stringify(value));
   } else {
     console.log("No soporta local storage");
   }
 }
+
 
 function getItemFromStorage(key,value) {
   if (typeof(Storage) != "undefined") {
@@ -324,7 +327,6 @@ $( window ).load(()=> {
       validUsers.push({ email: "carla.vasquez@gmail.com",password: "56906" ,id:"4",post:[]});
       addItemToStorage("users",validUsers);
   };
-  console.log(validUsers);
 
 });
 
@@ -348,7 +350,7 @@ $( window ).load(()=> {
 
 
 
-  function authenticate(email,password,errorE, errorP) {
+function authenticate(email,password,errorE, errorP) {
 
   const validUsers = getItemFromStorage("users");
     if (validUsers != null) {
@@ -371,12 +373,30 @@ $( window ).load(()=> {
     return false;
 }
 
+
+
+
 function addLocalStorage(id ,text,type){
   const validUsers = getItemFromStorage("users");
   const newPost = {id:id,text:text,type:type};
   const point = state.user.id;
 
-  console.log(point);
   (validUsers[point].post).push(newPost);
+  addItemToStorage("users",validUsers);
+}
+
+function removeLocalStorage(index){
+  const validUsers = getItemFromStorage("users");
+  const point = state.user.id;
+
+  (validUsers[point].post).splice(index,1);
+  addItemToStorage("users",validUsers);
+}
+
+function editLocalStorage(index ,editado){
+  const validUsers = getItemFromStorage("users");
+  const point = state.user.id;
+
+  (validUsers[point].post)[index].text =editado;
   addItemToStorage("users",validUsers);
 }

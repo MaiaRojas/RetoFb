@@ -12,7 +12,6 @@ const render = (root) => {
       section.append(muro(updated));
     }
 
-
     root.append(section);
 }
 
@@ -27,7 +26,6 @@ const state = {
 
 
 $(_ => {
-
     const root = $(".root");
     render(root);
 
