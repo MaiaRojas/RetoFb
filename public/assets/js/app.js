@@ -149,8 +149,6 @@ return header;
 
       postManager.postsToHTMLCreate(div_post,state.user.post);
 
-
-
       btn_publicar.on('click', function(){
 
         if(text_post.val()!=""){
