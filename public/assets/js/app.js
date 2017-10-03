@@ -184,7 +184,7 @@ return header;
 function PostManager() {
   console.log(state.user);
   this.posts = state.user.post;
-  this.postCount = this.posts.length;
+  this.postCount = (this.posts).length;
 
   this.addPost = function(text,type) {
 
