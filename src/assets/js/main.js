@@ -21,7 +21,8 @@ const updated = function (){
 }
 
 const state = {
-  page: null
+  page: null,
+  datos:null
 }
 
 

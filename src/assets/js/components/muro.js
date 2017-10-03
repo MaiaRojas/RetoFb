@@ -1,5 +1,5 @@
 "use strict";
-  const muro = (update) => {
+  const muro = (updated) => {
       const cont_muro =$('<section class="globalcontainer"></section>');
 
       const cont_divform = $(`<div class="fb_cont_post"></div>`);
@@ -38,7 +38,12 @@
 
       //Llamando al post
 
+      postManager.postsToHTMLCreate(div_post,state.user.post);
+
+
+
       btn_publicar.on('click', function(){
+
         if(text_post.val()!=""){
           const postTextarea = document.getElementById('postText').value;
           const postTypeSelect = document.getElementById('postType');

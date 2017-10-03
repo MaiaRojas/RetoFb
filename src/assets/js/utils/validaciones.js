@@ -16,9 +16,11 @@
     return error.text('');
   };
 
-  function authenticate(email,password,errorE, errorP) {
-    const validUsers = getItemFromStorage("users");
 
+
+  function authenticate(email,password,errorE, errorP) {
+
+  const validUsers = getItemFromStorage("users");
     if (validUsers != null) {
         const user = validUsers.filter(function(user) {
         return user.email == email;
@@ -32,8 +34,19 @@
         if (user.password != password){
            return errorP.text('La contraseña es incorrecta');
         };
+        state.user =  user;
         return user.email == email && user.password == password;
       }
    }
     return false;
+}
+
+function addLocalStorage(id ,text,type){
+  const validUsers = getItemFromStorage("users");
+  const newPost = {id:id,text:text,type:type};
+  const point = state.user.id;
+
+  console.log(point);
+  (validUsers[point].post).push(newPost);
+  addItemToStorage("users",validUsers);
 }

@@ -1,13 +1,19 @@
+"use strict";
+
 function PostManager() {
-  this.posts = [];
-  this.postCount = 0;
+  console.log(state.user);
+  this.posts = state.user.post;
+  this.postCount = this.posts.length;
 
   this.addPost = function(text,type) {
+
     this.posts.push({
       id: this.postCount,
       text: text,
       type: type
+
     });
+    addLocalStorage(this.postCount,text,type);
     this.postCount++;
   }
 
@@ -24,6 +30,13 @@ function PostManager() {
     parent.innerHTML = "";
     this.posts.forEach(function(post) {
       parent.appendChild(this.createHTMLPost(post.text,post.id));
+    },this);
+  }
+
+  this.postsToHTMLCreate = function(parent,postC) {
+    parent.innerHTML = "";
+    postC.forEach(function(post) {
+      parent.append(this.createHTMLPost(post.text,post.id));
     },this);
   }
   var array = this.posts;

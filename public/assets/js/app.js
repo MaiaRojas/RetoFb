@@ -21,7 +21,8 @@ const updated = function (){
 }
 
 const state = {
-  page: null
+  page: null,
+  datos:null
 }
 
 
@@ -100,8 +101,9 @@ return header;
 
         if (authenticate(input_user.val(),input_pasw.val(),error_user ,error_pasw) == true) {
             state.page = 1;
+            
             updated();
-            console.log("Ir a pagina 2");
+
         }
 
       });
@@ -110,7 +112,7 @@ return header;
   }
 
 "use strict";
-  const muro = (update) => {
+  const muro = (updated) => {
       const cont_muro =$('<section class="globalcontainer"></section>');
 
       const cont_divform = $(`<div class="fb_cont_post"></div>`);
@@ -149,7 +151,12 @@ return header;
 
       //Llamando al post
 
+      postManager.postsToHTMLCreate(div_post,state.user.post);
+
+
+
       btn_publicar.on('click', function(){
+
         if(text_post.val()!=""){
           const postTextarea = document.getElementById('postText').value;
           const postTypeSelect = document.getElementById('postType');
@@ -173,16 +180,22 @@ return header;
     return cont_muro;
   }
 
+"use strict";
+
 function PostManager() {
-  this.posts = [];
-  this.postCount = 0;
+  console.log(state.user);
+  this.posts = state.user.post;
+  this.postCount = this.posts.length;
 
   this.addPost = function(text,type) {
+
     this.posts.push({
       id: this.postCount,
       text: text,
       type: type
+
     });
+    addLocalStorage(this.postCount,text,type);
     this.postCount++;
   }
 
@@ -199,6 +212,13 @@ function PostManager() {
     parent.innerHTML = "";
     this.posts.forEach(function(post) {
       parent.appendChild(this.createHTMLPost(post.text,post.id));
+    },this);
+  }
+
+  this.postsToHTMLCreate = function(parent,postC) {
+    parent.innerHTML = "";
+    postC.forEach(function(post) {
+      parent.append(this.createHTMLPost(post.text,post.id));
     },this);
   }
   var array = this.posts;
@@ -298,12 +318,14 @@ $( window ).load(()=> {
   let validUsers = getItemFromStorage('users');
   if (validUsers == null) {
       validUsers = [];
-      validUsers.push({ email: "maia.rt.46@gmail.com", password: "12345"});
-      validUsers.push({ email: "ana.durant@gmail.com", password: "54321"});
-      validUsers.push({ email: "jose.garcia@gmail.com",password: "78906"});
-      validUsers.push({ email: "carla.vasquez@gmail.com",password: "56906"});
+      validUsers.push({ email: "maia.rt.46@gmail.com", password: "12345" , id:"0", post:[]});
+      validUsers.push({ email: "ana.durant@gmail.com", password: "54321", id:"1", post:[]});
+      validUsers.push({ email: "jose.garcia@gmail.com",password: "78906" ,id:"2",post:[]});
+      validUsers.push({ email: "carla.vasquez@gmail.com",password: "56906" ,id:"4",post:[]});
       addItemToStorage("users",validUsers);
   };
+  console.log(validUsers);
+
 });
 
 "use strict";
@@ -324,9 +346,11 @@ $( window ).load(()=> {
     return error.text('');
   };
 
-  function authenticate(email,password,errorE, errorP) {
-    const validUsers = getItemFromStorage("users");
 
+
+  function authenticate(email,password,errorE, errorP) {
+
+  const validUsers = getItemFromStorage("users");
     if (validUsers != null) {
         const user = validUsers.filter(function(user) {
         return user.email == email;
@@ -340,8 +364,19 @@ $( window ).load(()=> {
         if (user.password != password){
            return errorP.text('La contraseña es incorrecta');
         };
+        state.user =  user;
         return user.email == email && user.password == password;
       }
    }
     return false;
+}
+
+function addLocalStorage(id ,text,type){
+  const validUsers = getItemFromStorage("users");
+  const newPost = {id:id,text:text,type:type};
+  const point = state.user.id;
+
+  console.log(point);
+  (validUsers[point].post).push(newPost);
+  addItemToStorage("users",validUsers);
 }
