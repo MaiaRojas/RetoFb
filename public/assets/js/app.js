@@ -160,8 +160,8 @@ return header;
           const postTypeSelect = document.getElementById('postType');
           const postType = postTypeSelect.options[postTypeSelect.selectedIndex].value;
           postManager.addPost(postTextarea,postType);
-          postManager.postsToHTML(div_post);
-          // postManager.postsToHTML(document.getElementById('posts'));
+
+          postManager.postsToHTML(document.getElementById('posts'));
         } else {
           alert("No hay mensaje que publicar");
         }
@@ -208,11 +208,9 @@ function PostManager() {
   }
 
   this.postsToHTML = function(parent) {
-    parent.html = "";
-    // parent.innerHTML = "";
+    parent.innerHTML = "";
     this.posts.forEach(function(post) {
-      // parent.appendChild(this.createHTMLPost(post.text,post.id));
-      parent.append(this.createHTMLPost(post.text,post.id));
+      parent.appendChild(this.createHTMLPost(post.text,post.id));
     },this);
   }
 

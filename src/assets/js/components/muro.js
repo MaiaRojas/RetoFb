@@ -51,8 +51,8 @@
           const postTypeSelect = document.getElementById('postType');
           const postType = postTypeSelect.options[postTypeSelect.selectedIndex].value;
           postManager.addPost(postTextarea,postType);
-          postManager.postsToHTML(div_post);
-          // postManager.postsToHTML(document.getElementById('posts'));
+
+          postManager.postsToHTML(document.getElementById('posts'));
         } else {
           alert("No hay mensaje que publicar");
         }

@@ -27,11 +27,9 @@ function PostManager() {
   }
 
   this.postsToHTML = function(parent) {
-    parent.html = "";
-    // parent.innerHTML = "";
+    parent.innerHTML = "";
     this.posts.forEach(function(post) {
-      // parent.appendChild(this.createHTMLPost(post.text,post.id));
-      parent.append(this.createHTMLPost(post.text,post.id));
+      parent.appendChild(this.createHTMLPost(post.text,post.id));
     },this);
   }
 
