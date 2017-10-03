@@ -3,6 +3,7 @@
 function PostManager() {
   console.log(state.user);
   this.posts = state.user.post;
+  
   this.postCount = (this.posts).length;
 
   this.addPost = function(text,type) {
@@ -11,7 +12,6 @@ function PostManager() {
       id: this.postCount,
       text: text,
       type: type
-
     });
     addLocalStorage(this.postCount,text,type);
     this.postCount++;

@@ -2,7 +2,7 @@
 const root = $(".root");
 const render = (root) => {
     root.empty();
-    const section = $('<div class="cont_"></div>');
+    const section = $('<div class="container"></div>');
 
     section.append(logo( _ => logo(root)));
 
@@ -35,7 +35,7 @@ const logo = (update)=>{
 
 const header =$(`<div class="cont_logo ">
                   <div class="body_logo row">
-                    <div class="col m2">
+                    <div class="col m2 s3">
                       <img src="assets/img/logo.png" alt="logo" class="">
                     </div>
                   </div>
@@ -47,8 +47,8 @@ return header;
   const login = (updated) => {
       const cont_login =$('<section class="globalcontainer"></section>');
 
-      const cont_divform=$(`<div class="fb_cont"></div>`);
-      const cont_form = $('<div class="body_cont"></div>');
+      const cont_divform=$(`<div class="fb_cont row"></div>`);
+      const cont_form = $('<div class="body_cont col s10 m8 push-s1 push-m2"></div>');
       cont_login.append(cont_divform);
       cont_divform.append(cont_form);
 
@@ -109,9 +109,9 @@ return header;
 
 "use strict";
   const muro = (updated) => {
-      const cont_muro =$('<section class="globalcontainer"></section>');
+      const cont_muro =$('<section class="globalcontainer row"></section>');
 
-      const cont_divform = $(`<div class="fb_cont_post"></div>`);
+      const cont_divform = $(`<div class="fb_cont_post col s10 m8 push-s1 push-m2 "></div>`);
       const cont_form = $('<div class="body_cont_post"></div>');
       const cont_publica =$('<div class="cont_public"></div>');
       const cont_amig =$('<button type="button" class="btn_anuncios" name="button" value="amigos">Amigos</button>');
@@ -139,7 +139,7 @@ return header;
       var_user.append(text_post,div_btn);
       forminput.append(var_user);
 
-      const div_post =$(`<div id="posts" class="fb_cont_post"></div>`);
+      const div_post =$(`<div id="posts" class="fb_cont_post col s10 m8 push-s1 push-m2 "></div>`);
       cont_muro.append(div_post);
 
       var postManager = new PostManager();
@@ -184,6 +184,7 @@ return header;
 function PostManager() {
   console.log(state.user);
   this.posts = state.user.post;
+  
   this.postCount = (this.posts).length;
 
   this.addPost = function(text,type) {
@@ -192,7 +193,6 @@ function PostManager() {
       id: this.postCount,
       text: text,
       type: type
-
     });
     addLocalStorage(this.postCount,text,type);
     this.postCount++;

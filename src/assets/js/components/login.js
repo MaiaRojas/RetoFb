@@ -2,8 +2,8 @@
   const login = (updated) => {
       const cont_login =$('<section class="globalcontainer"></section>');
 
-      const cont_divform=$(`<div class="fb_cont"></div>`);
-      const cont_form = $('<div class="body_cont"></div>');
+      const cont_divform=$(`<div class="fb_cont row"></div>`);
+      const cont_form = $('<div class="body_cont col s10 m8 push-s1 push-m2"></div>');
       cont_login.append(cont_divform);
       cont_divform.append(cont_form);
 

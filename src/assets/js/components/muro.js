@@ -1,8 +1,8 @@
 "use strict";
   const muro = (updated) => {
-      const cont_muro =$('<section class="globalcontainer"></section>');
+      const cont_muro =$('<section class="globalcontainer row"></section>');
 
-      const cont_divform = $(`<div class="fb_cont_post"></div>`);
+      const cont_divform = $(`<div class="fb_cont_post col s10 m8 push-s1 push-m2 "></div>`);
       const cont_form = $('<div class="body_cont_post"></div>');
       const cont_publica =$('<div class="cont_public"></div>');
       const cont_amig =$('<button type="button" class="btn_anuncios" name="button" value="amigos">Amigos</button>');
@@ -30,7 +30,7 @@
       var_user.append(text_post,div_btn);
       forminput.append(var_user);
 
-      const div_post =$(`<div id="posts" class="fb_cont_post"></div>`);
+      const div_post =$(`<div id="posts" class="fb_cont_post col s10 m8 push-s1 push-m2 "></div>`);
       cont_muro.append(div_post);
 
       var postManager = new PostManager();

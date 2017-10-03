@@ -2,7 +2,7 @@
 const root = $(".root");
 const render = (root) => {
     root.empty();
-    const section = $('<div class="cont_"></div>');
+    const section = $('<div class="container"></div>');
 
     section.append(logo( _ => logo(root)));
 
