@@ -46,6 +46,7 @@
 
         if(text_post.val()!=""){
           const postTextarea = $('#postText').val();
+          console.log(postTextarea);
           // const postTypeSelect = $('#postType');
           // const postTextarea = document.getElementById('postText').value;
           const postTypeSelect = document.getElementById('postType');
